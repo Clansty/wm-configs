@@ -1,0 +1,63 @@
+#!/usr/bin/env sh
+
+yabai -m config mouse_follows_focus          on
+yabai -m config focus_follows_mouse          autofocus
+yabai -m config window_origin_display        default
+yabai -m config window_placement             second_child
+yabai -m config window_topmost               off
+yabai -m config window_shadow                float
+yabai -m config window_opacity               off
+yabai -m config active_window_opacity        1.0
+yabai -m config normal_window_opacity        0.95
+yabai -m config window_border                off
+yabai -m config window_border_width          6
+yabai -m config active_window_border_color   0xff775759
+yabai -m config normal_window_border_color   0x00555555
+yabai -m config insert_feedback_color        0x00d75f5f
+yabai -m config split_ratio                  0.50
+yabai -m config auto_balance                 off
+yabai -m config mouse_modifier               ctrl
+yabai -m config mouse_action1                move
+yabai -m config mouse_action2                resize
+yabai -m config mouse_drop_action            swap
+
+yabai -m config layout                       bsp
+yabai -m config top_padding                  0
+yabai -m config bottom_padding               0
+yabai -m config left_padding                 0
+yabai -m config right_padding                0
+yabai -m config window_gap                   02
+
+yabai -m config external_bar all:0:0
+
+noManage() {
+  yabai -m rule --add $1="$2" manage=off sticky=on
+}
+topMost() {
+  yabai -m rule --add $1="$2" layer=above
+}
+
+sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
+noManage app   "^系统偏好设置$"
+noManage app   "^Telegram$"
+noManage app   "^微信$"
+noManage title "简介$"
+topMost  title "简介$"
+noManage app   "^Stats$"
+noManage app   "^QSpace Pro$"
+noManage app   "^访达$"
+noManage title "^关于本机$"
+topMost  title "^关于本机$"
+noManage app   "^滴答清单$"
+topMost  app   "^滴答清单$"
+
+yabai -m rule --add app="^(WebStorm|IntelliJ IDEA|PyCharm|Rider)$" title="^((安全)?删除|复制|移动|重命名|将提交推送到|偏好设置|运行/调试配置|重新格式化代码|更新项目)" manage=off
+
+yabai -m rule --add app="^Parallels Desktop$" title="(配置|快照|控制中心|释放磁盘空间)$" manage=off
+
+# 应用 要在 yabai 加载完之后再打开
+'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --no-startup-window &
+
+echo "yabai configuration loaded.."
