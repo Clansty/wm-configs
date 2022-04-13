@@ -50,3 +50,8 @@ alt - p : yabai -m window --toggle sticky;\
 
 alt - v : yabai -m window --toggle topmost
 
+# 打开通知
+ctrl + alt + shift + cmd - x : osascript /Users/clansty/.local/share/scripts/activate-notification.scpt
+
+ctrl + alt + shift + cmd - q : /usr/bin/open 'tg://resolve?domain=luoling8192'
+ctrl + alt + shift + cmd - w : /usr/bin/open 'tg://resolve?domain=lcMenci'
