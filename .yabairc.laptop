@@ -41,17 +41,11 @@ sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
 noManage app   "^系统偏好设置$"
-noManage app   "^Telegram$"
-noManage app   "^微信$"
 noManage title "简介$"
 topMost  title "简介$"
 noManage app   "^Stats$"
-noManage app   "^QSpace Pro$"
-noManage app   "^访达$"
 noManage title "^关于本机$"
 topMost  title "^关于本机$"
-noManage app   "^滴答清单$"
-topMost  app   "^滴答清单$"
 
 yabai -m rule --add app="^(WebStorm|IntelliJ IDEA|PyCharm|Rider)$" title="^((安全)?删除|复制|移动|重命名|将提交推送到|偏好设置|运行/调试配置|重新格式化代码|更新项目)" manage=off
 
